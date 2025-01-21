@@ -25,7 +25,7 @@ $ tree -I 'node_modules|.git'
 ├── src
 │   ├── index.tsx
 │   ├── App.tsx
-│ 	│
+│   │
 │   ├── App.test.tsx
 │   ├── App.css
 │   ├── index.css
@@ -33,29 +33,29 @@ $ tree -I 'node_modules|.git'
 │   ├── reportWebVitals.ts
 │   ├── setupTests.ts
 │   ├── logo.svg
-│ 	│
+│   │
 │   ├── components
 │   │   ├── index.ts
 │   │   ├── footer.tsx
 │   │   ├── header.tsx
 │   │   └── drawerPanel.tsx
-│ 	│
+│   │
 │   ├── data
 │   │   ├── index.ts
 │   │   ├── home.ts
 │   │   └── header.ts
-│ 	│
+│   │
 │   ├── fonts
 │   │   ├── GeistMonoVF.woff
 │   │   └── GeistVF.woff
-│ 	│
+│   │
 │   ├── hoc
 │   │   ├── index.ts
 │   │   └── withLayout.tsx
-│ 	│
+│   │
 │   ├── hooks
 │   │   └── redux.ts
-│ 	│
+│   │
 │   ├── icons
 │   │   ├── index.ts
 │   │   ├── addPlusIcon.tsx
@@ -107,24 +107,24 @@ $ tree -I 'node_modules|.git'
 │   │   ├── starIcon.tsx
 │   │   ├── twitterIcon.tsx
 │   │   └── youtubeIcon.tsx
-│ 	│
+│   │
 │   ├── lib
 │   │   ├── config.ts
 │   │   └── utils.ts
-│ 	│
+│   │
 │   ├── pages
 │   │   ├── index.ts
 │   │   ├── about.tsx
 │   │   ├── home.tsx
 │   │   └── register.tsx
-│ 	│
+│   │
 │   ├── store
 │   │   ├── index.ts
 │   │   ├── layoutReducer.ts
 │   │   ├── productReducer.ts
 │   │   ├── reviewReducer.ts
 │   │   └── userReducer.ts
-│ 	│
+│   │
 │   └── types
 │       ├── common.ts
 │       ├── component.ts
