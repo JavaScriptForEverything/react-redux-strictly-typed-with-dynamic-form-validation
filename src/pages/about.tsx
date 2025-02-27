@@ -1,9 +1,16 @@
+import React from 'react';
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.snow.css';
 
-export const About = () => {
+const TextEditor = () => {
+  return (
+    <div>
+      <div className="flex justify-center items-center h-[10rem]">
+        <h1 className="text-6xl font-extrabold">Quill.Js Text Editor</h1>
+      </div>
+      <ReactQuill theme='snow'/>
+    </div>
+  );
+};
 
-	return (
-		<>
-			<p>About Page</p>
-		</>
-	)
-}
+export default TextEditor

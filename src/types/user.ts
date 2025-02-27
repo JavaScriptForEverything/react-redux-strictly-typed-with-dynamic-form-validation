@@ -25,4 +25,8 @@ export type InitialState = {
 	message: string
 	user: null | UserDocument
 	users: UserDocument[]
+
+	isAuthenticated: boolean
+	authToken: string | null
+	userId: string | null
 }

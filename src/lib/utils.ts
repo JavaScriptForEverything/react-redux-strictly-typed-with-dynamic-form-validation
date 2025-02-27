@@ -1,4 +1,4 @@
-import type { AppDispatch } from '../store'
+import type { AppDispatch, RootState } from '../store'
 import type { TempObj } from '../types/common'
 import type { FormFields } from '../types/user'
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
@@ -26,18 +26,35 @@ export const readAsDataURL = (file: File, { type='image' } = {}): Promise<string
 
 
 
-// Method-2: 
-// export const catchAsyncDispatch = (fn: (dispatch: AppDispatch) => Promise<void>, setError: typeof actions.failed) => (dispatch: AppDispatch): Promise<void> => {
+// Method-3: allow getState() function as 2nd arguments
+type AsyncThunkFunction = ( dispatch: AppDispatch, getState: () => RootState) => Promise<void>
 type SetError = ActionCreatorWithPayload<string>
-export const catchAsyncDispatch = (fn: (dispatch: AppDispatch) => Promise<void>, setError: SetError) => async (dispatch: AppDispatch): Promise<void> => {
-	try {
-		return await fn(dispatch)
-	} catch (err) {
-		if (err instanceof Error) dispatch(setError(err.message))
-		if (typeof err === 'string') dispatch(setError(err))
-		else dispatch(setError('An unknown error occurred.'))
-	}
-}
+
+export const catchAsyncDispatch = ( fn: AsyncThunkFunction, setError: SetError) => async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
+  try {
+    return await fn(dispatch, getState);
+  } catch (err) {
+    if (err instanceof Error) dispatch(setError(err.message));
+    else if (typeof err === 'string') dispatch(setError(err));
+    else dispatch(setError('An unknown error occurred.'));
+  }
+};
+
+
+
+
+// // Method-2: 
+// // export const catchAsyncDispatch = (fn: (dispatch: AppDispatch) => Promise<void>, setError: typeof actions.failed) => (dispatch: AppDispatch): Promise<void> => {
+// type SetError = ActionCreatorWithPayload<string>
+// export const catchAsyncDispatch = (fn: (dispatch: AppDispatch) => Promise<void>, setError: SetError) => async (dispatch: AppDispatch): Promise<void> => {
+// 	try {
+// 		return await fn(dispatch)
+// 	} catch (err) {
+// 		if (err instanceof Error) dispatch(setError(err.message))
+// 		if (typeof err === 'string') dispatch(setError(err))
+// 		else dispatch(setError('An unknown error occurred.'))
+// 	}
+// }
 
 // // Method-1: 
 // const catchAsyncDispatch = (fn: any, setError: any) => (dispatch: AppDispatch) => {

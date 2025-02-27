@@ -1,5 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { AppDispatch } from '../store'
+import type { AppDispatch, RootState } from '../store'
 import type { InitialState, LoginData, RegisterData } from '../types/user'
 import type { UserDocument } from '../types/common'
 import { createSlice } from '@reduxjs/toolkit'
@@ -12,8 +12,17 @@ const initialState: InitialState = {
 	error: '',
 	message: '',
 	user: null ,
-	users: []
+	users: [],
+
+	isAuthenticated: false,
+	authToken: '',
+	userId: ''
 }
+type AuthenticatePayload = {
+	isAuthenticated: boolean
+	authToken: string | null
+	userId: string | null
+} 
 
 export const { reducer, actions } = createSlice({
   name: 'user',
@@ -52,6 +61,14 @@ export const { reducer, actions } = createSlice({
 			error: '',
 			message: '',
 			user: action.payload
+    }),
+
+	  authenticate: (state: InitialState, action: PayloadAction<AuthenticatePayload >): InitialState => ({
+      ...state,
+			loading: false,
+			error: '',
+			message: '',
+			...action.payload
     }),
   },
 })
@@ -139,5 +156,26 @@ export const getAllUsers = () => catchAsyncDispatch( async (dispatch: AppDispatc
 
 	dispatch(actions.setUsers(users))
 	// dispatch(actions.setUsers(data))
+
+}, actions.failed)
+
+
+export const getLogedInUser = () => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
+	dispatch(actions.request())
+
+	const res = await fetch(`${ORIGIN}/api/users/me`, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${getState().user.authToken}`
+		},
+		credentials: 'include'
+	})
+
+	const { status, message, data: user } = await res.json()
+	if(status !=='success') throw dispatch(actions.failed(message))
+
+	dispatch(actions.setUsers(user))
+	console.log(user)
 
 }, actions.failed)

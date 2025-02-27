@@ -1,13 +1,16 @@
-// import { Home as HomePage } from '@/pages/home'
-import { Home, Register } from './pages'
+// import { Home, Register } from './pages'
+
+// import { About } from './pages'
+import About from './pages/about'
 
 const App = () => {
 
 	return (
 		<>
 
-			<Register />
-			<Home />
+			<About />
+			{/* <Register /> */}
+			{/* <Home /> */}
 		</>
 	)
 }

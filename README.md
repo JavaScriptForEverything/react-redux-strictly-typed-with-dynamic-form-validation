@@ -2,11 +2,28 @@
 ## React-Redux-Strictly-Typed-With-Dynamic-Form-Validation
 
 
+
 ### Key Features
 - react with redux strictly typed
 - dynamic form handling
 - dynamic form validation
 - handle registration form
+
+
+### Create Project
+```
+$ yarn create react-app . --template=typescript 
+$ yarn add @reduxjs/toolkit react-redux
+... setup redux /src/store 
+
+
+$ git clone https://github.com/JavaScriptForEverything/react-redux-strictly-typed-with-dynamic-form-validation.git
+$ yarn install
+$ yarn start
+$ yarn build
+```
+
+
 
 
 ### Project Structure
@@ -141,7 +158,34 @@ $ tree -I 'node_modules|.git'
 
 ### Project Scripts
 ```
+$ yarn add -D tailwindcss postcss autoprefixer
+$ yarn tailwindcss init
+
+
+/tailwind.config.js
+		...
+  content: [],
+  content: [ "./src/**/*.{js,jsx,ts,tsx}" ],
+		...
+
+/src/index.css
+		@tailwind base;
+		@tailwind components;
+		@tailwind utilities;
+
+$ yarn start
+$ yarn build
+```
+
+```
+$ git clone https://github.com/JavaScriptForEverything/react-redux-strictly-typed-with-dynamic-form-validation.git
 $ yarn install
 $ yarn start
 $ yarn build
+```
+
+
+
+### ShadCN-UI
+```
 ```
